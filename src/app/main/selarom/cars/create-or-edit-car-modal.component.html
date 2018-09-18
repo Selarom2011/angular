@@ -1,0 +1,68 @@
+<div bsModal #createOrEditModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createOrEditModal" aria-hidden="true" [config]="{backdrop: 'static'}">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <form *ngIf="active" #carForm="ngForm" novalidate (ngSubmit)="save()" autocomplete="off">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        <span *ngIf="car.id">{{l("EditCar")}}</span>
+                        <span *ngIf="!car.id">{{l("CreateNewCar")}}</span>
+                    </h4>
+                    <button type="button" class="close" (click)="close()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                 
+
+
+								<div class="form-group">
+									<label for="Car_Name">{{l("Name")}}</label>
+									<input type="text" id="Car_Name" class="form-control" [(ngModel)]="car.name" name="Name"    />
+								</div>
+					
+								<div class="form-group">
+									<label for="Car_StockCount">{{l("StockCount")}}</label>
+									<input type="number" id="Car_StockCount" class="form-control" [(ngModel)]="car.stockCount" name="StockCount"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="Car_Price">{{l("Price")}}</label>
+									<input type="number" id="Car_Price" class="form-control" [(ngModel)]="car.price" name="Price"  />
+								</div>
+					
+								<div class="form-group">
+									<label for="Car_BodyType">{{l("BodyType")}}</label>
+									<input type="text" id="Car_BodyType" class="form-control" [(ngModel)]="car.bodyType" name="BodyType"    />
+								</div>
+					
+								<div class="form-group m-form__group row">
+									<label for="Car_ReleaseDate"  class="col-md-12">{{l("ReleaseDate")}}</label>
+									<div class="col-lg-10 col-md-9 col-sm-8">
+										<input class="form-control m-input" type="datetime" datePicker [(selectedDate)]="car.releaseDate" id="Car_ReleaseDate">
+									</div>
+								</div>
+					
+								<br/><div class="m-checkbox-list">
+									<label for="Car_IsAvailable" class="m-checkbox">
+										<input id="Car_IsAvailable" type="checkbox" name="IsAvailable" [(ngModel)]="car.isAvailable"> 
+										{{l("IsAvailable")}}
+										<span></span>
+									</label>
+								</div>
+					
+								<div class="form-group">
+									<label for="Car_BrandName">{{l("BrandName")}}</label>
+									<input type="text" id="Car_BrandName" class="form-control" [(ngModel)]="car.brandName" name="BrandName"    />
+								</div>
+					
+
+                </div>
+                <div class="modal-footer">
+                    <button [disabled]="saving" type="button" class="btn btn-default" (click)="close()">{{l("Cancel")}}</button>
+                    <button type="submit" class="btn btn-primary blue" [disabled]="!carForm.form.valid" [buttonBusy]="saving" [busyText]="l('SavingWithThreeDot')"><i class="fa fa-save"></i> <span>{{l("Save")}}</span></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
